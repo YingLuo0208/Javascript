@@ -216,7 +216,7 @@ function task9() {
 function task10() {
     const numDice = parseInt(prompt('Enter the number of dice:'), 10);
     const targetSum = parseInt(prompt('Enter the target sum:'), 10);
-    const numSimulations = 10000;
+    const numSimulations = 10000;   // 控制程序中模拟掷骰子的次数
 
     // 检查用户输入是否为有效的正整数
     if (isNaN(numDice) || isNaN(targetSum) || numDice <= 0 || targetSum <= 0) {
@@ -225,13 +225,16 @@ function task10() {
         return;
     }
 
+    // 成功计数器,将跟踪在模拟过程中掷骰子达到目标总和的次数
     let successCount = 0;
 
     // 模拟掷骰子
     function rollDie() {
+        // 生成 1 到 6 之间的随机整数
         return Math.floor(Math.random() * 6) + 1;
     }
 
+    // 模拟循环
     for (let i = 0; i < numSimulations; i++) {
         let sum = 0;
         for (let j = 0; j < numDice; j++) {
@@ -248,4 +251,4 @@ function task10() {
 
     document.querySelector('#probability').innerHTML =
         `Probability to get sum ${targetSum} with ${numDice} dice is ${probability.toFixed(2)}%.`;
-}
+}   // toFixed(2)方法确保概率以两位小数显示
