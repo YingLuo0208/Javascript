@@ -159,20 +159,24 @@ function task8() {
     const startYear = parseInt(prompt('Enter the start year:'), 10);
     const endYear = parseInt(prompt('Enter the end year:'), 10);
 
-    // 验证输入是否为有效的年份
+    // 验证输入是否为有效的年份，确保开始年份不大于结束年份
     if (isNaN(startYear) || isNaN(endYear) || startYear > endYear) {
         document.querySelector('#leapyear').innerHTML = 'Please enter a valid range of years.';
         return;
     }
 
+    // 变量listHTML使用起始<ul>标记进行初始化。这将用于构建闰年列表的 HTML。
+    // listHTML变量用于构建将在网页中显示的 HTML 字符串
     let listHTML = '<ul>';
 
+    // 迭代从startYear到endYear的每一年
     for (let year = startYear; year <= endYear; year++) {
         if ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)) {
+            // 作为列表项 ( <li> ) 添加到listHTML字符串中
             listHTML += `<li>${year}</li>`;
         }
     }
-
+    // 关闭列表
     listHTML += '</ul>';
 
     document.querySelector('#leapyear').innerHTML = listHTML;
@@ -188,16 +192,18 @@ function task9() {
         return;
     }
 
+    // 定义函数isPrime()来检查数字 ( num ) 是否为素数
     function isPrime(num) {
         if (num <= 1) return false;
         if (num === 2) return true; // 2 是唯一的偶素数
         if (num % 2 === 0) return false; // 排除其他偶数
-        for (let i = 3; i <= Math.sqrt(num); i += 2) {
+        for (let i = 3; i < num; i += 2) {  // 从 3 开始检查,每次循环加2，所以i只会检查奇数（跳过偶数）
             if (num % i === 0) return false;
         }
         return true;
     }
 
+    // 使用输入的数字调用isPrime()函数
     if (isPrime(number)) {
         document.querySelector('#primeNum').innerHTML = `${number} is a prime number.`;
     } else {
