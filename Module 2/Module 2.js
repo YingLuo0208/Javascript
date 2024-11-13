@@ -5,15 +5,17 @@ function task1() {
     const numbers = [];
 
     // Get 5 numbers from the user and store them in the array
+    // 运行 5 次，每次都要求用户输入一个数字
     for (let i = 0; i < 5; i++) {
         const num = parseInt(prompt(`Enter number ${i + 1}:`));
-        numbers.push(num);
+        numbers.push(num);  // 使用push()方法添加到numbers数组中
     }
 
     // Print numbers in reverse order
     console.log('The numbers in reverse order are:');
+    // 从numbers数组的最后一个元素 ( numbers.length - 1 ) 开始，向后迭代到第一个元素（索引0 ）
     for (let i = numbers.length - 1; i >= 0; i--) {
-        console.log(numbers[i]);
+        console.log(numbers[i]);  // 每次迭代期间访问numbers[i]以相反的顺序打印每个数字
     }
 }
 
@@ -29,16 +31,20 @@ function task2() {
     }
 
     // Sort names alphabetically
+    // 调用sort()方法，以按字母顺序排列姓名
     participants.sort();
 
     // Create an ordered list of names
+    // 创建有序列表 ( <ol> ) 并将其存储在listHTML变量中
     let listHTML = '<ol>';
+
     for (let i = 0; i < participants.length; i++) {
         listHTML += `<li>${participants[i]}</li>`;
     }
     listHTML += '</ol>';
 
-    // Display the ordered list in the HTML element with id 'target'
+    // Display the ordered list in the HTML element with id 'participants'
+    // 在 id participants的 HTML 元素中显示有序列表
     document.querySelector('#participants').innerHTML = listHTML;
 }
 
