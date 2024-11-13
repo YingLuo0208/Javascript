@@ -164,6 +164,7 @@ function task6() {
 
 // Task 7: Roll a dice with a custom number of sides until it lands on the highest side
 function task7() {
+    // 生成 1 和sides之间的随机整数,范围移动到1到sides
     function rollDice(sides) {
         return Math.floor(Math.random() * sides) + 1;
     }
@@ -181,31 +182,37 @@ function task7() {
 
     listHTML += '</ul>';
 
-    // Display the list of rolls in the HTML element with id 'target'
+    // Display the list of rolls in the HTML element with id 'sides'
     document.querySelector('#sides').innerHTML = listHTML;
 }
 
 
 // Task 8: Concatenate an array of strings and display the result
 function task8() {
+
+    // 将字符串数组作为参数并初始化一个空字符串result 。
     function concat(array) {
         let result = '';
         // Loop through the array and concatenate each element
+        // 遍历数组中的每个元素并将每个元素附加到result
         for (let i = 0; i < array.length; i++) {
             result += array[i];
         }
-        return result;
+        return result;  // result包含连接成单个字符串的数组的所有元素
     }
 
     const names = ['Johnny', 'DeeDee', 'Joey', 'Marky'];
 
     // Directly set the concatenated string in the HTML element
+    // 使用names数组调用concat(names)函数，将结果设置为 ID 为concat元素的内部 HTML。
     document.querySelector('#concat').innerHTML = concat(names);
 }
 
 
 // Task 9: Filter out even numbers from an array
 function task9() {
+
+    // even(numbers)将数字数组作为参数，并创建一个空数组evenNumbers来仅存储偶数。
     function even(numbers) {
         const evenNumbers = [];
         // Loop through the array and check if each number is even
@@ -214,16 +221,18 @@ function task9() {
                 evenNumbers.push(numbers[i]);
             }
         }
-        return evenNumbers;
+        return evenNumbers;  // 循环完成后， evenNumbers仅包含numbers中的偶数
     }
 
     // Original array of numbers
     const originalArray = [2, 7, 4, 9, 10, 15, 18];
 
     // Get the even numbers array
+    // 调用从originalArray返回一个偶数数组，该数组存储在evenArray中
     const evenArray = even(originalArray);
 
     // Log both the original array and the even numbers array to the console
+    // 将结果记录到控制台
     console.log('Original array: ', originalArray);
     console.log('Even numbers array: ', evenArray);
 }
@@ -231,38 +240,52 @@ function task9() {
 
 // Task 10: Voting system
 function task10() {
+
+    // 保存用户输入的候选者数量
     const numCandidates = parseInt(prompt('Enter the number of candidates:'));
 
     const candidates = [];
 
     // Collect candidates' names and initialize their vote count
+    // 将每个候选人的name作为对象{ name: name, votes: 0 }添加到candidates中，初始投票计数为 0
     for (let i = 0; i < numCandidates; i++) {
         const name = prompt(`Name for candidate ${i + 1}:`);
         candidates.push({name: name, votes: 0});
     }
 
+    // 保存用户输入的选民数量
     const numVoters = parseInt(prompt('Enter the number of voters:'));
 
     // Collect votes
+    // 对于每个选民， prompt按姓名收集他们的选票，并find匹配姓名的candidates
     for (let i = 0; i < numVoters; i++) {
         const vote = prompt(
             `Voter ${i + 1}, enter the name of the candidate you vote for:`);
 
+        // find方法搜索candidates数组并返回与指定条件匹配的第一个元素。
+        // 如果未找到匹配项， find返回undefined
         const candidate = candidates.find(candidate => candidate.name === vote);
+        // candidate是candidates数组中的每个对象（每次迭代一个）
+        // candidate.name === vote检查候选人的姓名是否与投票字符串匹配。
+        // 如果为 true， find将停止并返回匹配的candidate对象
 
         // If the vote matches a candidate, increment their vote count
         if (candidate) {
-            candidate.votes++;
-        } else if (vote.trim() === '') {
-            // Do nothing if the vote is empty
-        } else {
-            // Handle invalid votes (for non-existent candidates)
+            candidate.votes++;  // 如果找到匹配项，候选人的votes属性就会增加 1
+        } else if (vote.trim() === '') {    // 处理空投票
+            console.log(`Voter ${i + 1}:Waiver`)
+        } else {   // 处理候选人名字错误
+            console.log(`Voter ${i + 1}:The name you entered is not in the candidate list.`);
+
         }
     }
 
     // Sort candidates by votes in descending order
+    // 候选人根据得票数按降序排列
     candidates.sort((a, b) => b.votes - a.votes);
 
+
+    // 得票最高的候选人（现在为candidates[0] ）是获胜者
     const winner = candidates[0];
 
     // Output the winner and vote results
