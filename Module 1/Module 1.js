@@ -1,25 +1,39 @@
 'use strict';
 
 // Task 1: Prints to the console
+// 定义一个名为task1的函数
 function task1() {
+    // 将输出打印到控制台
     console.log("I'm printing to console!");
 }
 
 // Task 2: Asks for the user's name and displays a greeting
 function task2() {
+    // const具有块作用域，该变量只能在声明它的块（或函数）内访问，一旦使用，就无法为其重新分配新值
+    // 但如果分配给const值是一个对象（包括数组和函数），则该对象内部的属性或元素仍然可以修改。
+    // prompt()方法向用户显示一个对话框,以字符串形式返回用户的输入,存储在name中
     const name = prompt('Type your name:');
+    // document.querySelector()方法选择HTML 元素<p id="Hello"></p>
     const helloElement = document.querySelector('#Hello');
+    // 如果name为true（户输入了名称），innerHTML将设置为Hello, [name]!其中[name]被用户的输入替换
+    // 如果户单击“取消”或输入空字符串，它将把innerHTML设置为'Hello, guest!'
     helloElement.innerHTML = name ? `Hello, ${name}!` : 'Hello, guest!';
 }
 
 // Task 3: Calculates and displays the sum, product, and average of three numbers
 function task3() {
+    // 要求用户“键入第一个整数：”，prompt()方法以字符串形式返回用户输入
+    // parseInt()转换为整数。如果输入不是有效数字，将返回NaN （非数字）。
     const first = parseInt(prompt('Type first integer:'));
     const second = parseInt(prompt('Type second integer:'));
     const third = parseInt(prompt('Type third integer:'));
 
+    // isNaN()函数检查值是否为NaN，如果123中的任何一个为NaN，则为true
     if (isNaN(first) || isNaN(second) || isNaN(third)) {
+        // document.querySelector()，允许您使用 CSS 选择器选择 DOM（文档对象模型）中的 HTML 元素。
+        // 使用id="calculate"更新元素的 HTML 内容以显示消息
         document.querySelector('#calculate').innerHTML = 'Please enter three integers.';
+        // 返回结果并停止函数执行。如果没有这个，代码将继续执行，可能会导致不正确的结果。
         return;
     }
 
@@ -27,6 +41,10 @@ function task3() {
     const product = first * second * third;
     const average = sum / 3;
 
+    // 使用id="calculate"更新元素的 HTML 内容
+    // 使用模板文字（`反引号`）将计算值（sum等）直接嵌入到字符串中。类似python中的f
+    // ${} 语法用于插入表达式（如变量、算式等）到字符串中
+    // 结果显示在新行中，使用<br>进行换行
     document.querySelector('#calculate').innerHTML = `
         The sum is ${sum} <br>
         The product is ${product} <br>
@@ -39,6 +57,9 @@ function task4() {
     const studentName = prompt('Enter your name:');
 
     // Generate a random number between 1 and 4
+    // Math.random()生成一个介于 0（含）和 1（不含）之间的随机浮点数。* 4将随机值缩放到 0（含）和 4（不含）之间
+    // Math.floor()将结果向下舍入到最接近的整数，得到 0 到 3 之间的数字。
+    // 加1，移动到 1 到 4（含）之间
     const randomHouse = Math.floor(Math.random() * 4) + 1;
 
     // Determine the house based on the random number
@@ -59,13 +80,15 @@ function task4() {
 
 // Task 5: Checks if a given year is a leap year
 function task5() {
+    // 10作为parseInt()的第二个参数提供以指定基数（十进制）
     const year = parseInt(prompt('Enter a year:'), 10);
 
+    // 检查year是否为有效数字，如果year为NaN （非数字）
     if (isNaN(year)) {
         document.querySelector('#year').innerHTML = 'Please enter a valid number.';
         return;
     }
-
+    // && and,|| or
     const isLeapYear = (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
 
     document.querySelector('#year').innerHTML =
@@ -74,23 +97,32 @@ function task5() {
 
 // Task 6: Calculates the square root if the user confirms
 function task6() {
+    // confirm()函数显示一个带有“确定”和“取消”按钮的对话框,返回true或者false
     const wantsSquareRoot = confirm('Should I calculate the square root?');
 
+    // 为true ，则执行if块内的代码
     if (wantsSquareRoot) {
         const number = parseFloat(prompt('Enter a number:'));
 
         // Check if the number is valid and non-negative
+        // parseFloat()将输入解析为浮点数并存储在变量number中
+        // 输入有效数字 and 非负数
         if (!isNaN(number) && number >= 0) {
+            // Math.sqrt(number)计算数字的平方根
             const squareRoot = Math.sqrt(number);
+            // 结果显示在id="root"的 HTML 元素中
             document.querySelector('#root').innerHTML =
                 `The square root of ${number} is ${squareRoot.toFixed(2)}.`;
+        // 处理无效号码输入
         } else if (isNaN(number)) {
             document.querySelector('#root').innerHTML =
                 'Please enter a valid number.';
+        // 处理负数
         } else {
             document.querySelector('#root').innerHTML =
                 'The square root of a negative number is not defined.';
         }
+    // 为false 处理用户取消
     } else {
         document.querySelector('#root').innerHTML =
             'The square root is not calculated.';
@@ -100,15 +132,20 @@ function task6() {
 // Task 7: Calculates the sum of a specified number of dice rolls
 function task7() {
     const numberOfRolls = parseInt(prompt('Enter the number of dice rolls:'), 10);
-
+    // 处理输入无效或者负数
     if (isNaN(numberOfRolls) || numberOfRolls <= 0) {
         document.querySelector('#dice').innerHTML = 'Please enter a valid positive number of rolls.';
         return;
     }
 
+    // 初始化总和
     let sum = 0;
 
+    // for循环运行numberOfRolls次（即，每次掷骰子）
+    // i初始化为0，一旦i不再小于numberOfRolls，循环就会停止。i++将i的值增加 1
     for (let i = 0; i < numberOfRolls; i++) {
+        // Math.random()生成一个介于 0（含）和 1（不含）之间的随机十进制数。
+        // 0（含）和 6（不含），+ 1确保结果介于 1 和 6 之间
         const roll = Math.floor(Math.random() * 6) + 1;
         sum += roll;
     }
