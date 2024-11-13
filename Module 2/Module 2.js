@@ -109,10 +109,11 @@ function task4() {
 function task5() {
     const numbers = [];
 
-    while (true) {
+    while (true) {  // 循环不断提示用户输入数字
         const num = parseInt(prompt('Enter a number:'));
 
         // Check if number is already entered
+        // includes()方法检查输入的数字是否已在numbers数组中
         if (numbers.includes(num)) {
             console.log(
                 `The number ${num} has already been given. Stopping the program.`);
@@ -123,11 +124,12 @@ function task5() {
         numbers.push(num);
     }
 
-    // Sort numbers in ascending order
+    // Sort numbers in ascending order 按升序对数字进行排序
     numbers.sort((a, b) => a - b);
 
     // Output sorted numbers to console
     console.log('The numbers you entered in ascending order:');
+    // for循环用于迭代排序后的numbers数组并将每个数字记录到控制台。
     for (let i = 0; i < numbers.length; i++) {
         console.log(numbers[i]);
     }
@@ -136,22 +138,26 @@ function task5() {
 
 // Task 6: Roll a dice until it lands on 6, display each result
 function task6() {
+    // 定义一个函数来模拟掷骰子
     function rollDice() {
+        // Math.floor()可确保该数字是 0 到 5 之间的整数 + 1移动到 1 到 6
         return Math.floor(Math.random() * 6) + 1;
     }
 
-    let roll;
+    let roll;  // 用于存储随后的do...while循环中每个骰子滚动的结果。
+    // listHTML初始化为包含起始<ul>标记的字符串，以在 HTML 中创建无序列表。
     let listHTML = '<ul>';
 
     // Keep rolling until we get a 6
+    // do...while循环至少运行一次，因为在每次迭代结束时都会检查条件
     do {
-        roll = rollDice();
+        roll = rollDice();  // 每个卷都是通过调用rollDice()生成的并存储在roll中
         listHTML += `<li>${roll}</li>`;
-    } while (roll !== 6);
+    } while (roll !== 6);  // 一旦roll的值为6 ，循环就会停止
 
     listHTML += '</ul>';
 
-    // Display the list of rolls in the HTML element with id 'target'
+    // Display the list of rolls in the HTML element with id 'dice'
     document.querySelector('#dice').innerHTML = listHTML;
 }
 
