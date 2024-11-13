@@ -60,16 +60,18 @@ function task3() {
     }
 
     // Sort names in reverse alphabetical order
+    // sort()方法按字母顺序对数组dogNames进行排序,reverse()方法来反转
     dogNames.sort().reverse();
 
-    // Create an unordered list of names
+    // Create an unordered list of names 创建狗名称的无序列表
     let listHTML = '<ul>';
     for (let i = 0; i < dogNames.length; i++) {
         listHTML += `<li>${dogNames[i]}</li>`;
     }
     listHTML += '</ul>';
 
-    // Display the unordered list in the HTML element with id 'target'
+    // Display the unordered list in the HTML element with id 'dogs'
+    // 在 id 为“dogs”的 HTML 元素中显示无序列表
     document.querySelector('#dogs').innerHTML = listHTML;
 }
 
@@ -87,7 +89,10 @@ function task4() {
         numbers.push(num);
     }
 
-    // Sort numbers from largest to smallest
+    // Sort numbers from largest to smallest (按字典顺序）
+    // 比较函数(a, b) => b - a按降序（从大到小）对数字进行排序。
+    // 如果b - a的结果为负数，则在排序数组中a将被放置在b之前。如果它返回正值，则a将位于b之后。
+    // 如果返回0 ， a和b将保持相同的相对顺序。
     numbers.sort(function(a, b) {
         return b - a;
     });
