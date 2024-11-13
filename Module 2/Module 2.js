@@ -284,12 +284,23 @@ function task10() {
     // 候选人根据得票数按降序排列
     candidates.sort((a, b) => b.votes - a.votes);
 
-
     // 得票最高的候选人（现在为candidates[0] ）是获胜者
-    const winner = candidates[0];
+    const highestVotes = candidates[0].votes;
+
+    // 创建一个名为winners的数组,用 filter 方法筛选出所有得票等于 highestVotes 的候选人
+    // 如果条件为真：候选人将被添加到新数组winners中
+    const winners = candidates.filter(candidate => candidate.votes === highestVotes);
 
     // Output the winner and vote results
-    console.log(`The winner is ${winner.name} with ${winner.votes} votes.`);
+    if (winners.length > 1) {  // 检查winners数组中是否有多个候选人
+        console.log(`It's a tie! The winners are:`);
+        // winners.forEach(...) ：迭代winners数组中的每个元素
+        winners.forEach(winner => console.log(`${winner.name} with ${winner.votes} votes`));
+    } else {
+        console.log(`The winner is ${winners[0].name} with ${winners[0].votes} votes.`);
+    }
+
+    // 显示每个候选人的选票计数
     console.log('Results:');
     candidates.forEach(candidate => {
         console.log(`${candidate.name}: ${candidate.votes} votes`);
