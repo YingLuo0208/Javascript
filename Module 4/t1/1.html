@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 1</title>
+    <!-- defer 属性使得 JavaScript 文件在 HTML 完全加载后再执行 -->
+
+    <style>
+        /* 为表单和输入框添加一些基本样式 */
+        form {
+            margin: 20px;
+            text-align: center;
+        }
+
+        input[type="text"] {
+            padding: 0.5rem;
+            margin-right: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        input[type="submit"] {
+            padding: 0.5rem 1rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Task 1</h1>
+    <!-- 为了用户体验和交互，提供了一个简单的搜索表单 -->
+    <form action="https://api.tvmaze.com/search/shows">
+        <!-- 用户输入搜索内容的文本框 -->
+        <input id="query" name="q" type="text" placeholder="Search for TV shows..." required>
+        <!-- 提交按钮 -->
+        <input type="submit" value="Search">
+    </form>
+</body>
+</html>

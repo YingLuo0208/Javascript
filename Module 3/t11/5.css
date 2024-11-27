@@ -1,0 +1,100 @@
+html {  /* 设置全局字体*/
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;  /* 删除默认边距和填充 */
+  padding: 0;
+  background-color: #f0ddd5;
+}
+
+.container {
+  width: 60rem;  /* 将宽度限制为60rem以提高可读性 */
+  margin: auto;  /* 内容水平居中并留有margin: auto; */
+}
+
+header {
+  background-color: #3ea9dd;  /* 为标题区域提供蓝色背景 */
+  padding: 1rem;  /* 在内容与其边框之间创建缓冲浏
+  览器将默认根字体大小设置为16px ，因此1rem等于16px除非根字体大小发生更改 */
+  color: #fff;  /* 白色文本 */
+}
+
+main {
+  background-color: #fff;  /* 白色背景 */
+  padding: 1rem;  /* 间距填充 */
+}
+
+section {
+  display: flex;  /* 启用弹性框 */
+  flex-wrap: wrap;  /* 如果需要，允许子元素换行到下一行 */
+  justify-content: space-evenly;  /* 确保项目之间的间距均匀 */
+  gap: 1rem;  /* 在子元素之间添加1rem的间隙 */
+}
+
+/*每篇文章*/
+article {
+  width: calc(100% / 3 - 2rem);  /* 宽度:为父容的三分之一减去2rem */
+  box-sizing: border-box;  /* 框大小：确保内边距和边框包含在元素的总宽度和高度中 */
+  cursor: pointer;  /* 光标：将鼠标悬停在article上时将光标更改为手形，表示它是可点击的 */
+  border: 1px #ccc solid;  /* 边框：添加一个宽度为 1px 且颜色为浅灰色 样式为实心边框 */
+  padding: 1rem;  /* 填充：内容和边框之间添加 1rem 的空间 */
+  border-radius: 6px;  /* 边框半径：以6px为半径对元素的角进行圆化 */
+  box-shadow: 3px 6px 6px #ccc;  /* 框阴影：添加具有水平、垂直和模糊偏移的阴影，颜色为浅灰色  */
+  transition: all 0.2s ease-in-out;  /* 过渡：对超过 0.2 秒的任何属性更改应用平滑过渡效果 */
+}
+
+article:hover {
+  transform: scale(1.02);  /* 变换：悬停在article元素上时，元素的大小增加 2% */
+  box-shadow: 0px 0px 2px #ccc;  /* 框阴影：水平或垂直偏移，模糊半径，颜色  */
+}
+
+article h2 {
+  margin: 0;  /* 删除浏览器应用到<h2>元素的默认边距，确保标题与其父容器更好地对齐  */
+  text-align: center;  /* 将<h2>元素中的文本水平居中 */
+  padding: 0 0 0.5rem 0;  /* 顶部：0，右：0，底部：0.5rem，左：0 */
+}
+
+figure {
+  margin: 0;
+  text-align: center;
+}
+
+figure img {
+  width: 100%;
+}
+
+figcaption {
+  text-align: center;
+}
+
+footer {
+  background-color: #3ea9dd;
+  text-align: center;
+  padding: 1rem;
+}
+
+dialog[closed] {
+  position: fixed;
+  transition: all 0.5s ease-in-out;
+  opacity: 0;
+  display: block;
+}
+
+dialog[open] {
+  opacity: 1;
+}
+
+dialog::backdrop {
+  background: rgb(0 0 0 / 0.8);
+}
+
+dialog span {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  font-size: 2rem;
+  text-decoration: none;
+  color: #fff;
+  filter: drop-shadow(2px 2px 2px #000);
+}
