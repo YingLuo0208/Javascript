@@ -1,0 +1,4 @@
+.my-list {  /* 选择所有 class="my-list" 属性的 HTML 元素，并应用指定的样式。 */
+  background-color: rgb(211, 62, 62);
+  color: #fff;  /* 文字颜色为白色 */
+}
