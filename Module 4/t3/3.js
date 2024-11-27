@@ -1,5 +1,4 @@
 'use strict';
-
 document.addEventListener('DOMContentLoaded', function() {
     // 获取表单和结果显示容器
     const form = document.querySelector('form');
